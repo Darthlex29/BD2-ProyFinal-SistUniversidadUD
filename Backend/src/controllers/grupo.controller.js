@@ -1,4 +1,4 @@
-import { createGrupo, deleteGrupo, getGrupoById, getGrupos, getGruposConEstudiantes, getOfertaAcademicaPorSede, updateGrupo } from "../repositories/gupo.dao";
+import { createGrupo, deleteGrupo, getGrupoById, getGrupos, getGruposConEstudiantes, getOfertaAcademicaPorSede, updateGrupo } from "../repositories/grupo.dao.js";
 
 // Obtener todos los grupos
 export const obtenerGrupos = async (req, res) => {

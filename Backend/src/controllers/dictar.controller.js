@@ -4,7 +4,7 @@ import {
     createDictado, 
     updateDictado, 
     deleteDictado 
-  } from "../repositories/dictado.dao.js";
+  } from "../repositories/dictar.dao.js";
   
   // Obtener todos los dictados
   export const getAllDictados = async (req, res) => {

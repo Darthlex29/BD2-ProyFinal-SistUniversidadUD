@@ -5,6 +5,10 @@ import estudiantesRutas from "../src/routes/estudiantes.routes.js";
 import asignaturasRutas from "./routes/asignaturas.routes.js";
 import clasificacionRutas from "./routes/clasificacion.routes.js";
 import profesorRutas from "./routes/profesores.routes.js";
+import cursoRutas from "./routes/curso.routes.js";
+import dictarRutas from "./routes/dictar.routes.js";
+import grupoRutas from "./routes/grupo.routes.js";
+import nominaRutas from "./routes/nomina.routes.js";
 
 const app = express();
 app.use(cors());
@@ -21,6 +25,10 @@ app.use(estudiantesRutas);
 app.use(asignaturasRutas);
 app.use(clasificacionRutas);
 app.use(profesorRutas);
+app.use(cursoRutas);
+app.use(dictarRutas);
+app.use(grupoRutas);
+app.use(nominaRutas);
 
 app.listen(3000, () => {
   console.log("Servidor en puerto: 3000 🚀");

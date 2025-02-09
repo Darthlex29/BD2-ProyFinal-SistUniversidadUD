@@ -1,4 +1,4 @@
-import { createNomina, deleteNomina, getNominaByDoc, getNominas, updateNomina } from "../repositories/nomina.dao";
+import { createNomina, deleteNomina, getNominaByDoc, getNominas, updateNomina } from "../repositories/nomina.dao.js";
 
   // Obtener todas las nóminas
   export const obtenerNominas = async (req, res) => {

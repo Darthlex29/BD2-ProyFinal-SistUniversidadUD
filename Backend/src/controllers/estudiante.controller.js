@@ -7,7 +7,7 @@ import {
     getEstudiantesConGrupos,
     getEstudiantesConPregrado
   } from "../repositories/estudiantes.dao.js";
-import { getGruposConEstudiantes } from "../repositories/gupo.dao.js";
+import { getGruposConEstudiantes } from "../repositories/grupo.dao.js";
   
   // Obtener todos los estudiantes
   export const obtenerEstudiantes = async (req, res) => {
