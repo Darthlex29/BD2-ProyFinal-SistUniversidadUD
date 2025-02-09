@@ -5,7 +5,8 @@ import {
     updateEstudiante,
     deleteEstudiante,
     getEstudiantesConGrupos,
-    getEstudiantesConPregrado
+    getEstudiantesConPregrado,
+    getEstudiantesByRegion
   } from "../repositories/estudiantes.dao.js";
 import { getGruposConEstudiantes } from "../repositories/grupo.dao.js";
   
@@ -103,3 +104,12 @@ import { getGruposConEstudiantes } from "../repositories/grupo.dao.js";
     }
   };
   
+  export const obtenerEstudiantesPorRegion = async (req, res) => {
+    const { region } = req.params;
+    try {
+      const estudiantes = await getEstudiantesByRegion(region);
+      res.json(estudiantes);
+    } catch (error) {
+      res.status(500).json({ error: "Error al obtener estudiantes por región" });
+    }
+  };

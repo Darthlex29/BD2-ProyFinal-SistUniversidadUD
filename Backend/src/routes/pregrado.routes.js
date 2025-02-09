@@ -4,7 +4,8 @@ import {
   obtenerPregradoPorId,
   crearPregrado,
   actualizarPregrado,
-  eliminarPregrado
+  eliminarPregrado,
+  obtenerPregradosPorRegion
 } from "../controllers/pregrado.controller.js";
 
 const router = express.Router();
@@ -15,5 +16,6 @@ router.get("/pregrado:id", obtenerPregradoPorId);
 router.post("/pregrado", crearPregrado);
 router.put("/pregrado:id", actualizarPregrado);
 router.delete("/pregrado:id", eliminarPregrado);
+router.get("/pregrados/reg/:region", obtenerPregradosPorRegion);
 
 export default router;

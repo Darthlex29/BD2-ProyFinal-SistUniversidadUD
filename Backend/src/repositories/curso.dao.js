@@ -116,3 +116,16 @@ export const getCursosDetallados = async () => {
       throw new Error("No se pudieron obtener los cursos detallados");
   }
 };
+
+export const getCursosByRegion = async (region) => {
+    try {
+      const result = await pool.query(
+        "SELECT * FROM curso WHERE region::text = $1",
+        [region]
+      );
+      return result.rows;
+    } catch (error) {
+      console.error("Error al obtener cursos por región:", error);
+      throw error;
+    }
+  };

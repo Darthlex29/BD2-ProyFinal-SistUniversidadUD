@@ -73,3 +73,13 @@ export const obtenerAsignaturas = async (req, res) => {
       res.status(500).json({ error: "Error al obtener las asignaturas con profesores" });
     }
   };
+  
+  export const obtenerAsignaturasPorRegion = async (req, res) => {
+    const { region } = req.params;
+    try {
+      const asignaturas = await getAsignaturasByRegion(region);
+      res.json(asignaturas);
+    } catch (error) {
+      res.status(500).json({ error: "Error al obtener asignaturas por región" });
+    }
+  };

@@ -70,3 +70,12 @@ import {
     }
   };
   
+  export const obtenerPregradosPorRegion = async (req, res) => {
+    const { region } = req.params;
+    try {
+      const pregrados = await getPregradosByRegion(region);
+      res.json(pregrados);
+    } catch (error) {
+      res.status(500).json({ error: "Error al obtener pregrados por región" });
+    }
+  };

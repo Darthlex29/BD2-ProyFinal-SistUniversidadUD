@@ -93,3 +93,13 @@ export const obtenerProfesores = async (req, res) => {
       res.status(500).json({ error: "Error al obtener la información completa de los profesores" });
     }
   };
+
+  export const obtenerProfesoresPorRegion = async (req, res) => {
+    const { region } = req.params;
+    try {
+      const profesores = await getProfesoresByRegion(region);
+      res.json(profesores);
+    } catch (error) {
+      res.status(500).json({ error: "Error al obtener profesores por región" });
+    }
+  };

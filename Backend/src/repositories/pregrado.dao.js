@@ -60,3 +60,16 @@ export const deletePregrado = async (id) => {
     throw error;
   }
 };
+
+export const getPregradosByRegion = async (region) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM pregrado WHERE region::text = $1",
+      [region]
+    );
+    return result.rows;
+  } catch (error) {
+    console.error("Error al obtener pregrados por región:", error);
+    throw error;
+  }
+};

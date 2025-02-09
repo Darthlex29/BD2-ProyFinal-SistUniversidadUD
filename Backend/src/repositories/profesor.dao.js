@@ -138,3 +138,16 @@ export const getProfesoresCompleto = async () => {
     throw error;
   }
 };
+
+export const getProfesoresByRegion = async (region) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM profesor WHERE region::text = $1",
+      [region]
+    );
+    return result.rows;
+  } catch (error) {
+    console.error("Error al obtener profesores por región:", error);
+    throw error;
+  }
+};

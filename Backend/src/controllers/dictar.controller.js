@@ -67,4 +67,13 @@ import {
       res.status(500).json({ error: "Error al eliminar dictado" });
     }
   };
-  
+
+  export const obtenerDictadosPorRegion = async (req, res) => {
+    const { region } = req.params;
+    try {
+      const dictados = await getDictadosByRegion(region);
+      res.json(dictados);
+    } catch (error) {
+      res.status(500).json({ error: "Error al obtener dictado" });
+    }
+  };

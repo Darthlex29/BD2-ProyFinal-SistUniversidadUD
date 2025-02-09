@@ -125,3 +125,17 @@ export const getEstudiantesConPregrado = async () => {
     throw error;
   }
 };
+
+export const getEstudiantesByRegion = async (region) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM estudiante WHERE region::text = $1",
+      [region]
+    );
+    return result.rows;
+  } catch (error) {
+    console.error("Error al obtener estudiantes por región:", error);
+    throw error;
+  }
+};
+

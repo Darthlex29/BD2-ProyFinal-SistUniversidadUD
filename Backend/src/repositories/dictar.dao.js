@@ -26,7 +26,12 @@ export const getDictadoByProfesor = async (cod_profesor) => {
 };
 
 // Crear un nuevo dictado
-export const createDictado = async (cod_asignatura, cod_profesor, n_horas, sede) => {
+export const createDictado = async (
+  cod_asignatura,
+  cod_profesor,
+  n_horas,
+  sede
+) => {
   try {
     const result = await pool.query(
       `INSERT INTO dictar (cod_asignatura, cod_profesor, n_horas, sede) 
@@ -41,7 +46,12 @@ export const createDictado = async (cod_asignatura, cod_profesor, n_horas, sede)
 };
 
 // Actualizar un dictado (número de horas y sede)
-export const updateDictado = async (cod_asignatura, cod_profesor, n_horas, sede) => {
+export const updateDictado = async (
+  cod_asignatura,
+  cod_profesor,
+  n_horas,
+  sede
+) => {
   try {
     const result = await pool.query(
       `UPDATE dictar 
@@ -67,6 +77,19 @@ export const deleteDictado = async (cod_asignatura, cod_profesor) => {
     return result.rows[0];
   } catch (error) {
     console.error("Error al eliminar dictado:", error);
+    throw error;
+  }
+};
+
+export const getDictadosByRegion = async (region) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM dictar WHERE region::text = $1",
+      [region]
+    );
+    return result.rows;
+  } catch (error) {
+    console.error("Error al obtener dictados por región:", error);
     throw error;
   }
 };

@@ -68,3 +68,13 @@ export const getCursosDetallados = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+export const obtenerCursosPorRegion = async (req, res) => {
+    const { region } = req.params;
+    try {
+      const cursos = await getCursosByRegion(region);
+      res.json(cursos);
+    } catch (error) {
+      res.status(500).json({ error: "Error al obtener cursos por región" });
+    }
+  };

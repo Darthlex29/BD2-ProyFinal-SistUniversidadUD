@@ -9,6 +9,7 @@ import cursoRutas from "./routes/curso.routes.js";
 import dictarRutas from "./routes/dictar.routes.js";
 import grupoRutas from "./routes/grupo.routes.js";
 import nominaRutas from "./routes/nomina.routes.js";
+import regionRutas from "./routes/region.routes.js";
 
 const app = express();
 app.use(cors());
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 
 // Ruta para obtener todos los usuarios
 // Usar las rutas del pregrado
+app.use(regionRutas);
 app.use(pregradoRutas);
 app.use(estudiantesRutas);
 app.use(asignaturasRutas);

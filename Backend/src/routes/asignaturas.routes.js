@@ -5,7 +5,8 @@ import {
   crearAsignatura,
   actualizarAsignatura,
   eliminarAsignatura,
-  obtenerAsignaturasConProfesores
+  obtenerAsignaturasConProfesores,
+  obtenerAsignaturasPorRegion
 } from "../controllers/asignatura.controller.js";
 
 const router = Router();
@@ -17,5 +18,6 @@ router.post("/asignaturas", crearAsignatura);
 router.put("/asignaturas/cod/:cod_asignatura", actualizarAsignatura);
 router.delete("/asignaturas/cod/:cod_asignatura", eliminarAsignatura);
 router.get("/asignaturas/profesores", obtenerAsignaturasConProfesores);
+router.get("/asignaturas/reg/:region", obtenerAsignaturasPorRegion);
 
 export default router;

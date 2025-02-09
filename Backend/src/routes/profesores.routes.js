@@ -7,7 +7,8 @@ import {
   eliminarProfesor,
   obtenerHorasProfesores,
   obtenerCargaAcademicaProfesores,
-  obtenerProfesoresCompleto
+  obtenerProfesoresCompleto,
+  obtenerProfesoresPorRegion
 } from "../controllers/profesores.controller.js";
 
 const router = Router();
@@ -21,5 +22,6 @@ router.delete("/profesores/doc/:numero_documento", eliminarProfesor);
 router.get("/profesores/horas", obtenerHorasProfesores);
 router.get("/profesores/carga-academica", obtenerCargaAcademicaProfesores);
 router.get("/profesores/completo", obtenerProfesoresCompleto);
+router.get("/profesores/reg/:region", obtenerProfesoresPorRegion);
 
 export default router;

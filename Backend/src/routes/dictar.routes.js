@@ -4,7 +4,8 @@ import {
   getDictadosPorProfesor,
   createNewDictado,
   updateExistingDictado,
-  deleteExistingDictado
+  deleteExistingDictado,
+  obtenerDictadosPorRegion
 } from "../controllers/dictar.controller.js";
 
 const router = Router();
@@ -15,5 +16,6 @@ router.get("/dictados/profesor/:cod_profesor", getDictadosPorProfesor);
 router.post("/dictados", createNewDictado);
 router.put("/dictados", updateExistingDictado);
 router.delete("/dictados", deleteExistingDictado);
+router.get("/dictados/reg/:region", obtenerDictadosPorRegion);
 
 export default router;
