@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  crdb-node1:
+    image: cockroachdb/cockroach:v23.1.0
+    container_name: crdb-chapinero
+    hostname: crdb-chapinero
+    command: start --insecure --advertise-addr=crdb-chapinero --join=crdb-chapinero,crdb-macarena,crdb-bosa --locality=region=chapinero
+    ports:
+      - "26257:26257"  # Puerto para la API de CockroachDB
+      - "8080:8080"    # Puerto para la interfaz web
+    volumes:
+      - ./data/crdb-chapinero:/cockroach/cockroach-data
+    environment:
+      - COCKROACH_SCAN_INTERVAL=100ms
+
+  crdb-node2:
+    image: cockroachdb/cockroach:v23.1.0
+    container_name: crdb-macarena
+    hostname: crdb-macarena
+    command: start --insecure --advertise-addr=crdb-macarena --join=crdb-chapinero,crdb-macarena,crdb-bosa --locality=region=macarena
+    ports:
+      - "26258:26257"  # Puerto para la API de CockroachDB
+      - "8081:8080"    # Puerto para la interfaz web
+    volumes:
+      - ./data/crdb-macarena:/cockroach/cockroach-data
+    environment:
+      - COCKROACH_SCAN_INTERVAL=100ms
+
+  crdb-node3:
+    image: cockroachdb/cockroach:v23.1.0
+    container_name: crdb-bosa
+    hostname: crdb-bosa
+    command: start --insecure --advertise-addr=crdb-bosa --join=crdb-chapinero,crdb-macarena,crdb-bosa --locality=region=bosa
+    ports:
+      - "26259:26257"  # Puerto para la API de CockroachDB
+      - "8082:8080"    # Puerto para la interfaz web
+    volumes:
+      - ./data/crdb-bosa:/cockroach/cockroach-data
+    environment:
+      - COCKROACH_SCAN_INTERVAL=100ms

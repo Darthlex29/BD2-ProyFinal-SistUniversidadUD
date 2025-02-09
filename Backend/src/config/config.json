@@ -1,0 +1,17 @@
+{
+  "development": {
+        "user": "root",
+        "host": "localhost",
+        "port": 26257,
+        "database": "universidad",
+        "ssl": false
+    },
+    "production": {
+        "user": "admin",
+        "password": "securepassword",
+        "host": "crdb-chapinero",
+        "port": 26257,
+        "database": "universidad",
+        "ssl": true
+    }  
+}
