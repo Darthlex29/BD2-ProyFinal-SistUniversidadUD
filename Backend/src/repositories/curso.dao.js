@@ -23,12 +23,12 @@ export const getCursoById = async (cod_curso) => {
   }
 };
 
-export const createCurso = async (cod_pregrado, nombre, capacidad_estudiantes, sede) => {
+export const createCurso = async (cod_curso, cod_pregrado, nombre, capacidad_estudiantes, sede) => {
   try {
       const result = await pool.query(
-          `INSERT INTO curso (cod_pregrado, nombre, capacidad_estudiantes, sede) 
-           VALUES ($1, $2, $3, $4) RETURNING *`,
-          [cod_pregrado, nombre, capacidad_estudiantes, sede]
+          `INSERT INTO curso (cod_curso, cod_pregrado, nombre, capacidad_estudiantes, sede) 
+           VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+          [cod_curso, cod_pregrado, nombre, capacidad_estudiantes, sede]
       );
       return result.rows[0];
   } catch (error) {

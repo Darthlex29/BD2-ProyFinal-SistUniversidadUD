@@ -21,8 +21,8 @@ export const getCursoById = async (req, res) => {
 
 export const createCurso = async (req, res) => {
     try {
-        const { cod_pregrado, nombre, capacidad_estudiantes, sede } = req.body;
-        const nuevoCurso = await cursoDAO.createCurso(cod_pregrado, nombre, capacidad_estudiantes, sede);
+        const { cod_curso, cod_pregrado, nombre, capacidad_estudiantes, sede } = req.body;
+        const nuevoCurso = await cursoDAO.createCurso(cod_curso, cod_pregrado, nombre, capacidad_estudiantes, sede);
         res.status(201).json(nuevoCurso);
     } catch (error) {
         res.status(400).json({ error: error.message });

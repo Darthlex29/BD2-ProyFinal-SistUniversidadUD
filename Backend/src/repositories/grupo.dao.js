@@ -12,7 +12,10 @@ export const getGrupos = async () => {
 
 export const getGrupoById = async (cod_grupo) => {
   try {
-    const result = await pool.query("SELECT * FROM grupo WHERE cod_grupo = $1", [cod_grupo]);
+    const result = await pool.query(
+      "SELECT * FROM grupo WHERE cod_grupo = $1",
+      [cod_grupo]
+    );
     if (result.rows.length === 0) throw new Error("Grupo no encontrado");
     return result.rows[0];
   } catch (error) {
@@ -53,7 +56,10 @@ export const updateGrupo = async (cod_grupo, cod_curso, nombre, semestre) => {
 
 export const deleteGrupo = async (cod_grupo) => {
   try {
-    const result = await pool.query("DELETE FROM grupo WHERE cod_grupo = $1 RETURNING *", [cod_grupo]);
+    const result = await pool.query(
+      "DELETE FROM grupo WHERE cod_grupo = $1 RETURNING *",
+      [cod_grupo]
+    );
     if (result.rows.length === 0) throw new Error("Grupo no encontrado");
     return result.rows[0];
   } catch (error) {
@@ -88,14 +94,18 @@ export const getGruposConEstudiantes = async () => {
 export const getOfertaAcademicaPorSede = async (sede) => {
   try {
     const query = `
-      SELECT c.nombre AS curso, a.nombre_asignatura, g.nombre AS grupo, 
-             p.nombre AS profesor, d.n_horas
+      SELECT 
+        c.nombre AS curso, 
+        a.nombre_asignatura, 
+        g.nombre AS grupo, 
+        p.nombre AS profesor, 
+        d.n_horas
       FROM curso c
-      INNER JOIN asignatura a ON c.cod_curso = a.cod_curso
+      LEFT JOIN asignatura a ON c.cod_curso = a.cod_curso
       LEFT JOIN grupo g ON c.cod_curso = g.cod_curso
       LEFT JOIN dictar d ON a.cod_asignatura = d.cod_asignatura
       LEFT JOIN profesor p ON d.cod_profesor = p.numero_documento
-      WHERE c.sede = $1
+      WHERE c.sede ILIKE $1
     `;
     const result = await pool.query(query, [sede]);
     return result.rows;
