@@ -1,4 +1,4 @@
-import { createProfesor, deleteProfesor, getCargaAcademicaProfesores, getHorasProfesores, getProfesorByDoc, getProfesores, getProfesoresCompleto, updateProfesor } from "../repositories/profesor.dao.js";
+import { createProfesor, deleteProfesor, getCargaAcademicaProfesores, getHorasProfesores, getProfesorByDoc, getProfesores, getProfesoresByRegion, getProfesoresCompleto, updateProfesor } from "../repositories/profesor.dao.js";
 
 // Obtener todos los profesores
 export const obtenerProfesores = async (req, res) => {

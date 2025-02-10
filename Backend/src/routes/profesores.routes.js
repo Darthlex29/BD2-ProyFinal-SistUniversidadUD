@@ -25,3 +25,6 @@ router.get("/profesores/completo", obtenerProfesoresCompleto);
 router.get("/profesores/reg/:region", obtenerProfesoresPorRegion);
 
 export default router;
+
+
+//9001

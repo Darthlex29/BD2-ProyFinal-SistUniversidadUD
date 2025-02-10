@@ -11,23 +11,24 @@ export const getPregrados = async () => {
   }
 };
 
-// Obtener un pregrado por ID
-export const getPregradoById = async (id) => {
+// Obtener un pregrado por código (clave primaria)
+export const getPregradoById = async (cod_pregrado) => {
   try {
-    const result = await pool.query("SELECT * FROM pregrado WHERE id = $1", [id]);
+    const result = await pool.query("SELECT * FROM pregrado WHERE cod_pregrado = $1", [cod_pregrado]);
+    console.log(result.rows[0]);
     return result.rows[0];
   } catch (error) {
-    console.error("Error al obtener pregrado por ID:", error);
+    console.error("Error al obtener pregrado por código:", error);
     throw error;
   }
 };
 
 // Crear un nuevo pregrado
-export const createPregrado = async (nombre, edad) => {
+export const createPregrado = async (cod_pregrado, nombre, creditos, nota_minima, sede) => {
   try {
     const result = await pool.query(
-      "INSERT INTO pregrado (nombre, edad) VALUES ($1, $2) RETURNING *",
-      [nombre, edad]
+      "INSERT INTO pregrado (cod_pregrado, nombre, creditos, nota_minima, sede) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+      [cod_pregrado, nombre, creditos, nota_minima, sede]
     );
     return result.rows[0];
   } catch (error) {
@@ -37,11 +38,11 @@ export const createPregrado = async (nombre, edad) => {
 };
 
 // Actualizar un pregrado
-export const updatePregrado = async (id, nombre, edad) => {
+export const updatePregrado = async (cod_pregrado, nombre, creditos, nota_minima, sede) => {
   try {
     const result = await pool.query(
-      "UPDATE pregrado SET nombre = $1, edad = $2 WHERE id = $3 RETURNING *",
-      [nombre, edad, id]
+      "UPDATE pregrado SET nombre = $2, creditos = $3, nota_minima = $4, sede = $5 WHERE cod_pregrado = $1 RETURNING *",
+      [cod_pregrado, nombre, creditos, nota_minima, sede]
     );
     return result.rows[0];
   } catch (error) {
@@ -51,9 +52,9 @@ export const updatePregrado = async (id, nombre, edad) => {
 };
 
 // Eliminar un pregrado
-export const deletePregrado = async (id) => {
+export const deletePregrado = async (cod_pregrado) => {
   try {
-    const result = await pool.query("DELETE FROM pregrado WHERE id = $1 RETURNING *", [id]);
+    const result = await pool.query("DELETE FROM pregrado WHERE cod_pregrado = $1 RETURNING *", [cod_pregrado]);
     return result.rows[0];
   } catch (error) {
     console.error("Error al eliminar pregrado:", error);
@@ -61,6 +62,7 @@ export const deletePregrado = async (id) => {
   }
 };
 
+// Obtener pregrados filtrados por región
 export const getPregradosByRegion = async (region) => {
   try {
     const result = await pool.query(
