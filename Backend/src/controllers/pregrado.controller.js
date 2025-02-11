@@ -20,10 +20,10 @@ export const obtenerPregrados = async (req, res) => {
 // Obtener un pregrado por código
 export const obtenerPregradoPorId = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { cod_pregrado } = req.params;
 
-    console.log({id:id, req_params: req.params}); 
-    const pregrado = await getPregradoById(id);
+    console.log({cod_pregrado:cod_pregrado, req_params: req.params}); 
+    const pregrado = await getPregradoById(cod_pregrado);
     if (!pregrado) {
       return res.status(404).json({ error: "Pregrado no encontrado" });
     }
@@ -36,8 +36,8 @@ export const obtenerPregradoPorId = async (req, res) => {
 // Crear un nuevo pregrado
 export const crearPregradoController = async (req, res) => {
   try {
-    const { id, nombre, creditos, nota_minima, sede } = req.body;
-    const nuevoPregrado = await createPregrado(id, nombre, creditos, nota_minima, sede);
+    const { cod_pregrado, nombre, creditos, nota_minima, sede } = req.body;
+    const nuevoPregrado = await createPregrado(cod_pregrado, nombre, creditos, nota_minima, sede);
     res.status(201).json(nuevoPregrado);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -47,9 +47,9 @@ export const crearPregradoController = async (req, res) => {
 // Actualizar un pregrado
 export const actualizarPregradoController = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { cod_pregrado } = req.params;
     const { nombre, creditos, nota_minima, sede } = req.body;
-    const pregradoActualizado = await updatePregrado(id, nombre, creditos, nota_minima, sede);
+    const pregradoActualizado = await updatePregrado(cod_pregrado, nombre, creditos, nota_minima, sede);
     if (!pregradoActualizado) {
       return res.status(404).json({ error: "Pregrado no encontrado" });
     }
@@ -62,8 +62,8 @@ export const actualizarPregradoController = async (req, res) => {
 // Eliminar un pregrado
 export const eliminarPregradoController = async (req, res) => {
   try {
-    const { id } = req.params;
-    const pregradoEliminado = await deletePregrado(id);
+    const { cod_pregrado } = req.params;
+    const pregradoEliminado = await deletePregrado(cod_pregrado);
     if (!pregradoEliminado) {
       return res.status(404).json({ error: "Pregrado no encontrado" });
     }

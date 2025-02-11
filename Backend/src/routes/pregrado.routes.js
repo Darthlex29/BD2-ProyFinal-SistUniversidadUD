@@ -12,10 +12,10 @@ const router = express.Router();
 
 // Definir las rutas del CRUD de pregrado
 router.get("/pregrado", obtenerPregrados);
-router.get("/pregrado/id/:id", obtenerPregradoPorId);
+router.get("/pregrado/id/:cod_pregrado", obtenerPregradoPorId);
 router.post("/pregrado", crearPregradoController);
-router.put("/pregrado/id/:id", actualizarPregradoController);
-router.delete("/pregrado/id/:id", eliminarPregradoController);
+router.put("/pregrado/id/:cod_pregrado", actualizarPregradoController);
+router.delete("/pregrado/id/:cod_pregrado", eliminarPregradoController);
 router.get("/pregrados/reg/:region", obtenerPregradosPorRegionController);
 
 export default router;
